@@ -5,8 +5,6 @@ import { GoogleSignInButton, GoogleSignOutButton } from '@/components/authButton
 
 const login = () => {
     const { data: session } = useSession()
-console.log(session);
-
     if (session) {
         return (
             <div>
@@ -18,9 +16,11 @@ console.log(session);
         )
     } else {
         return (
-            <div>
-                <p>You are not signed in.</p>
-                <GoogleSignInButton />
+            <div className='bg-login h-screen w-full flex justify-center items-center' >
+                <div className='bg-black bg-opacity-50 w-1/4 text-white p-10 flex flex-col items-center'>
+                    <span className='font-bold text-4xl pb-10'>Log in</span>
+                    <GoogleSignInButton />
+                </div>
             </div>
         )
     }

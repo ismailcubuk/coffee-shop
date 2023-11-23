@@ -12,8 +12,8 @@ export default NextAuth({
   ],
   callbacks: {
     async session({ session }) {
-        const sessionUser = await User.findOne({email: session.user.email})
-        session.user.id= sessionUser._id;
+      const sessionUser = await User.findOne({ email: session.user.email });
+      session.user.id = sessionUser._id;
       return session;
     },
     async signIn({ profile }) {
@@ -23,16 +23,15 @@ export default NextAuth({
 
         const userExist = await User.findOne({ email: profile.email });
 
-        if(!userExist) {
-            const user = await User.create({
-                name: profile.given_name,
-                surname: profile.family_name,
-                email: profile.email,
-                image: profile.picture,
-            });
+        if (!userExist) {
+          const user = await User.create({
+            name: profile.given_name,
+            surname: profile.family_name,
+            email: profile.email,
+            image: profile.picture,
+          });
         }
         return true;
-
       } catch (error) {
         console.log(error);
         return false;
